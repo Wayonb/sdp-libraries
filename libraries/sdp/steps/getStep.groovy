@@ -15,9 +15,11 @@ def call(String stepName){
 
 @NonCPS
 def getStepFromCollector(String stepName){
+  println("current JTE version is '${jteVersion.get()}'")
   try{
     Class collector = Class.forName("org.boozallen.plugins.jte.init.primitives.TemplatePrimitiveCollector")
     List steps = collector.current().getSteps(stepName)
+    println("Number of steps '${steps.size()}'")
     if(steps.size() == 0){
       error "Step '${stepName}' not found."
     } else if (steps.size() > 1){
